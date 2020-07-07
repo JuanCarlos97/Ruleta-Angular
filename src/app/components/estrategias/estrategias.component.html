@@ -1,0 +1,90 @@
+<div class="container mt-5 animated backInDown">
+    <div class="row">
+        <div class="col text-right">
+            <button routerLink="/estrategia/nuevo" class="btn btn-info">
+                <i class="fa fa-plus"></i>
+                Agregar
+            </button>
+        </div>
+    </div>
+    <br>
+
+    <div class="row justify-content-around">
+        <div class="col text-center animated fadeInUp faster" *ngFor="let foo of estrategias">
+            <div *ngIf="!cargando && estrategias.length > 0">
+                <app-card-estrategia [estrategia]="foo" [index]="foo.id"></app-card-estrategia>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="container">
+        <div *ngIf="!cargando" class="row">
+            <div class="col text-center">
+                <button (click)="verEstrategias()" class="btn btn-danger">
+                <i class="fas fa-chart-line"></i>
+      Obtener mejor estrategia!
+    </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div *ngIf="!cargando && estrategias.length === 0" class="alert alert-warning text-center mt-5 pt-5 pb-5 mb-5 animated fadeIn faster">
+                <h4 class="alert-heading">No hay registros</h4>
+                <p>
+                    <i class="fa fa-exclamation fa-2x"></i>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <div *ngIf="cargando" class="mt-3 animated fadeIn faster">
+                    <app-loading></app-loading>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div *ngIf="estrategiasVer">
+        <div class="row">
+            <div class="col">
+                <h3>Estrategia 1: </h3>
+                <p>En esta estrategia aparenta no tener problemas ya que las apuestas siempre son las mismas independientemente de perder o ganar, sin embargo existe un alto grado de perder y poco de ganar, ¿Cómo?. La probabilidad de ganar es de 0.45% y
+                    la probabilidad de perder es de 0.55% esto nos lleva a tener mas posibilidades de perdida. Despues de conocer el intervalo de confianza nos damos cuenta que tenemos baja probabilidad de ganar y de igual forma es baja de perder, pero
+                    tenemos un factor limite dentro de nuestras apuestas, el dinero o presupuesto es de $2000 esto lleva a terminar ese presupuesto tarde o temprano.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Estrategia 2: </h3>
+                <p>En esta estrategia tenemos unas ganancias mas altas que la anterior, ademas de tener ganancias mas altas, esto es un arma de doble filo, ya que al perder duplicamos nuestra apuesta, pero… ¿Qué pasaria si nuestra siguiente apuesta doblada
+                    supera el dinero que tenemos en cartera o con nosotros?, exacto! volveriamos a apostar desde el incio o bien apostariamos solo lo que tenemos, pero teniendo en cuenta de que si perdemos este presupuesto termina, sin embargo al incluir
+                    un limite, este limite podria nivelar nuestra apuesta para no exagerar, esto puede ser bueno si el limite es relativamente poco, pero puede ser malo si el limite supera el 25% de nuestro presupuesto. Si tomamos la primera opcion tendriamos
+                    la posibilidad de retirarnos cuando nuestras el dinero acumulado ganado, superen las espectativas del apostador.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Estrategia 3: </h3>
+                <p>En esta estrategia tenemos de la misma forma ganancias altas sin embargo lo que sube tiende a bajar y esto sucede en esta estrategia, puede llegar a subir y obtener buenas ganancias sin embargo al bajar tenemos una posibilidad de perdelo
+                    todo, pero… ¿que si no lo perdemos todo?, si no lo perdemos todo vuelve a subir y obtener una mejor ganancia que la anterior, sin embargo como mencionamos en la estrategia anterior, puede ser un arma de doble filo si no controlamos
+                    nuestro limite de apuesta.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Conclusión: </h3>
+                <p>En esta estrategia aparenta no tener problemas ya que las apuestas siempre son las mismas independientemente de perder o ganar, sin embargo existe un alto grado de perder y poco de ganar, ¿Cómo?. La probabilidad de ganar es de 0.45% y
+                    la probabilidad de perder es de 0.55% esto nos lleva a tener mas posibilidades de perdida. Despues de conocer el intervalo de confianza nos damos cuenta que tenemos baja probabilidad de ganar y de igual forma es baja de perder, pero
+                    tenemos un factor limite dentro de nuestras apuestas, el dinero o presupuesto es de $2000 esto lleva a terminar ese presupuesto tarde o temprano.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

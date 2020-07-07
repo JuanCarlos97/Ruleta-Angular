@@ -1,0 +1,67 @@
+<div class="container mt-5 flex-center animated pulse">
+    <div class="form-group text-left">
+        <button routerLink="/estrategias" class="btn btn-info">
+            <i class="fa fa-arrow-left"></i>
+            Ver estrategias
+          </button>
+    </div>
+    <div class="card w-50 align-content-center">
+        <div class="card-body">
+            <form (ngSubmit)="guardar(f)" #f="ngForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="ID" [(ngModel)]="estrategia.id" name="id" disabled="disabled" />
+                    <small class="form-text text-muted">Este campo es autogenerado</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Nombre de la estrategia o jugador</label>
+                    <input type="text" class="form-control" placeholder="Nombre de la estrategia o jugador" [(ngModel)]="estrategia.nombre" name="nombre" required/>
+                    <span *ngIf="f.submitted && f.controls['nombre'].errors" class="text-danger animated fadeIn">El nombre de la estrategia es requerido.</span>
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="form-group">
+                    <label>Color de apuesta</label>
+                    <select [(ngModel)]="estrategia.color" name="color" class="browser-default custom-select mb-4">
+                      <option value = "rojo">Rojo</option>
+                      <option value = "negro">Negro</option>
+                      <option value = "verde">Verde</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Cantidad de dinero total a apostar</label>
+                    <input type="number" class="form-control" placeholder="Cantidad total ej: $5000" [(ngModel)]="estrategia.cantidadInicial" name="cantidadInicial" required/>
+                    <span *ngIf="f.submitted && f.controls['cantidadInicial'].errors" class="text-danger animated fadeIn">El presupuesto de la estrategia es requerido.</span>
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="form-group">
+                    <label>Iniciar apostando con</label>
+                    <input type="number" class="form-control" placeholder="Cantidad a apostar inicial ej: $5" [(ngModel)]="estrategia.primeraApuesta" name="primeraApuesta" required/>
+                    <span *ngIf="f.submitted && f.controls['primeraApuesta'].errors" class="text-danger animated fadeIn">El monto a apostar primera vez es requerido.</span>
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="form-group">
+                    <label>Condicion</label>
+                    <select [(ngModel)]="estrategia.Condicion" name="Condicion" class="browser-default custom-select mb-4">
+                      <option value = "1">Apostar la misma cantidad, siempre.</option>
+                      <option value = "2">Si pierdo, duplicar apuesta, si gano mantener la cantidad.</option>
+                      <option value = "3">Si gano, duplicar apuesta, si pierdo mantener la cantidad.</option>
+                    </select>
+                </div>
+                <div *ngIf="getCondicion()" class="form-group">
+                    <label>Limite de apuesta de la condición</label>
+                    <input type="number" class="form-control" placeholder="Cantidad maxima a apostar ej: $300" [(ngModel)]="estrategia.limiteCondicion" name="limiteCondicion" required/>
+                    <span *ngIf="f.submitted && f.controls['limiteCondicion'].errors" class="text-danger animated fadeIn">El monto maximo a apostar es requerido.</span>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <hr/>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success w-25">
+                      <i class="fa fa-save"></i>
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

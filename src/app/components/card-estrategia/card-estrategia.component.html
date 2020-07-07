@@ -1,0 +1,15 @@
+<div class="card text-center" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{ estrategia.nombre }}</h5>
+        <p class="card-text">Color: {{ estrategia.color }}</p>
+        <p class="card-text">Condición: {{ estrategia.Condicion }}</p>
+        <p class="card-text">Presupuesto: {{ estrategia.cantidadInicial }}</p>
+        <button class="btn btn-success" [routerLink]="['/estrategia', index]">
+            <i class="fa fa-pen"></i>
+        </button>
+        <a [routerLink]="['/estrategia-datos', index]" class="btn btn-primary">Ver estrategia</a>
+        <button class="btn btn-danger" (click)="borrarEstrategia( estrategia ) ">
+            <i class="fa fa-trash"></i>
+        </button>
+    </div>
+</div>

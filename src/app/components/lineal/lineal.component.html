@@ -1,0 +1,81 @@
+<h4>Utiliza una ecuacion recursiva <small> CONGRUENCIAL </small></h4>
+<hr>
+<form autocomplete="off" (ngSubmit)="guardar( forma )" #forma="ngForm">
+
+    <div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Inserta g; Debe ser entero</label>
+            <div class="col-8">
+
+                <input class="form-control" type="number" placeholder="numero" name="g" [ngModel]="variables.g">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Ingresa tu número impar</label>
+            <div class="col-8">
+
+                <input class="form-control" type="number" placeholder="numero impar" name="x" [ngModel]="variables.x">
+            </div>
+        </div>
+
+        <div class=" form-group row ">
+            <label class="col-2 col-form-label ">Ingresa los numeros deseados</label>
+            <div class="col-8 ">
+
+                <input class="form-control " type="number " placeholder="Ej: 1000 " name="i" [ngModel]="variables.i">
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button type="submit" class="btn btn-outline-primary btn-block">
+        Realizar prueba
+      </button>
+        </div>
+    </div>
+</form>
+
+<div>
+    <h4>Datos a usar:</h4>
+    <h5>k = {{ m }} </h5>
+    <h5>x0 = {{ x }} </h5>
+    <h5>g = {{ g }} </h5>
+    <h5>n = {{ n }} </h5>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">n</th>
+            <th scope="col">xi</th>
+            <th scope="col">xi + 1</th>
+            <th scope="col">ri</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let a of xi; let i = index">
+            <th scope="row"> {{ i }} </th>
+            <td> {{ a }} </td>
+            <td> {{ xi1[i] }} </td>
+            <td> {{ ri[i] | number:'.0-5' }} </td>
+        </tr>
+    </tbody>
+</table>
+<div class="row">
+    <div class="col">
+        <h3>prueba de media:</h3>
+
+        <h4>Datos a usar:</h4>
+        <h5>ri total = {{ riTotal | number:'.0-5' }} </h5>
+        <h5>Limite inferior = {{ LI | number:'.0-5' }} </h5>
+        <h5>ri- = {{ riMenos | number:'.0-5' }} </h5>
+        <h5>Limite superior = {{ LS | number:'.0-5' }} </h5>
+        <h4> {{ Respuesta }} </h4>
+    </div>
+</div>

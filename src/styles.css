@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+.td-upDown {
+    background-color: rgb(255, 238, 0) !important;
+}
+
+.defaultColorTd {
+    background-color: rgba(0, 71, 129, 0.774);
+}
+
+.backgroud {
+    background-image: url(assets/background.webp);
+}

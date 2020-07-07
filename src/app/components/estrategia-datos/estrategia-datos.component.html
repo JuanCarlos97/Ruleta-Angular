@@ -1,0 +1,590 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <h5>Nombre: {{ estrategia.nombre }}</h5>
+            <p>Color: {{ estrategia.color }}</p>
+            <p>Presupuesto: {{ estrategia.cantidadInicial }}</p>
+            <p>Valor de apuesta: {{ estrategia.primeraApuesta }}</p>
+            <p>Condicion: {{ CondicionName }}</p>
+            <p>Limite de la condición: {{ estrategia.limiteCondicion }}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <a href="#carouselExampleFade" role="button" data-slide="prev">
+                        <button type="button" class="btn btn-dark">Anterior</button>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                        <button type="button" class="btn btn-dark">Siguiente</button>
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class="col">
+                <div id="carouselExampleFade" data-interval="false" class="carousel slide carousel-slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="col">
+                                <h2>Corrida 1</h2>
+                                <form (ngSubmit)="guardar(f)" #f="ngForm">
+                                    <div class="form-group w-50">
+                                        <label>Modulo: </label>
+                                        <input type="number" class="form-control" placeholder="Modulo para el generador..." [(ngModel)]="estrategia.modulo[0]" name="modulo[0]" />
+                                    </div>
+                                    <div class="form-group w-50">
+                                        <label>X0: </label>
+                                        <input type="number" class="form-control" placeholder="X0 debe ser entero..." [(ngModel)]="estrategia.x0[0]" name="x0[0]" />
+                                    </div>
+                                    <div class="form-group w-50">
+                                        <label>Numeros deseados: </label>
+                                        <input type="number" class="form-control" placeholder="Numeros aleatorios deseados" [(ngModel)]="estrategia.nDeseados[0]" name="nDeseados[0]" />
+                                    </div>
+                                    <hr/>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success w-25">
+                                      <i class="fa fa-save"></i>
+                                        Guardar
+                                    </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">RI</th>
+                                        <th scope="col">Variable</th>
+                                        <th scope="col">Cartera</th>
+                                        <th scope="col">Apuesta</th>
+                                        <th scope="col">Resultado</th>
+                                        <th scope="col">Dinero final</th>
+                                        <th scope="col">Ganancia</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let a of xi; let i = index">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+                                        <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+                                        <td *ngIf="ri[i]"> {{ cartera[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ Apuesta[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ coloresResultado[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ DineroFinal[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ GananciaReplica1[i] }} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group text-center">
+                                        <button (click)="generar(0)" class="btn btn-info w-25">
+                                      <i class="fa fa-play"></i>
+                                        Generar prueba R1
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col">
+                                <h2>Corrida 2</h2>
+                                <form (ngSubmit)="guardar(f)" #f="ngForm">
+                                    <div class="form-group w-50">
+                                        <label>Modulo: </label>
+                                        <input type="number" class="form-control" placeholder="Modulo para el generador..." [(ngModel)]="estrategia.modulo[1]" name="modulo[1]" />
+                                    </div>
+                                    <div class="form-group w-50">
+                                        <label>X0: </label>
+                                        <input type="number" class="form-control" placeholder="X0 debe ser entero..." [(ngModel)]="estrategia.x0[1]" name="x0[1]" />
+                                    </div>
+                                    <div class="form-group w-50">
+                                        <label>Numeros deseados: </label>
+                                        <input type="number" class="form-control" placeholder="Numeros aleatorios deseados" [(ngModel)]="estrategia.nDeseados[1]" name="nDeseados[1]" />
+                                    </div>
+                                    <hr/>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success w-25">
+                                      <i class="fa fa-save"></i>
+                                        Guardar
+                                    </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">RI</th>
+                                        <th scope="col">Variable</th>
+                                        <th scope="col">Cartera</th>
+                                        <th scope="col">Apuesta</th>
+                                        <th scope="col">Resultado</th>
+                                        <th scope="col">Dinero final</th>
+                                        <th scope="col">Ganancia</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let a of xi; let i = index">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+                                        <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+                                        <td *ngIf="ri[i]"> {{ cartera[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ Apuesta[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ coloresResultado[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ DineroFinal[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ GananciaReplica2[i] }} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group text-center">
+                                        <button (click)="generar(1)" class="btn btn-info w-25">
+                                      <i class="fa fa-play"></i>
+                                        Generar prueba R2
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col">
+                                <h2>Corrida 3</h2>
+                                <form (ngSubmit)="guardar(f)" #f="ngForm">
+                                    <div class="form-group w-50">
+                                        <label>Modulo: </label>
+                                        <input type="number" class="form-control" placeholder="Modulo para el generador..." [(ngModel)]="estrategia.modulo[2]" name="modulo[2]" />
+                                    </div>
+                                    <div class="form-group w-50">
+                                        <label>X0: </label>
+                                        <input type="number" class="form-control" placeholder="X0 debe ser entero..." [(ngModel)]="estrategia.x0[2]" name="x0[2]" />
+                                    </div>
+                                    <hr/>
+                                    <div class="form-group w-50">
+                                        <label>Numeros deseados: </label>
+                                        <input type="number" class="form-control" placeholder="Numeros aleatorios deseados" [(ngModel)]="estrategia.nDeseados[2]" name="nDeseados[2]" />
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success w-25">
+                                      <i class="fa fa-save"></i>
+                                        Guardar
+                                    </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">RI</th>
+                                        <th scope="col">Variable</th>
+                                        <th scope="col">Cartera</th>
+                                        <th scope="col">Apuesta</th>
+                                        <th scope="col">Resultado</th>
+                                        <th scope="col">Dinero final</th>
+                                        <th scope="col">Ganancia</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let a of xi; let i = index">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+                                        <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+                                        <td *ngIf="ri[i]"> {{ cartera[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ Apuesta[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ coloresResultado[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ DineroFinal[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ GananciaReplica3[i] }} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group text-center">
+                                        <button (click)="generar(2)" class="btn btn-info w-25">
+                                      <i class="fa fa-play"></i>
+                                        Generar prueba R3
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col">
+                                <h2>Corrida 4</h2>
+                                <form (ngSubmit)="guardar(f)" #f="ngForm">
+                                    <div class="form-group w-50">
+                                        <label>Modulo: </label>
+                                        <input type="number" class="form-control" placeholder="Modulo para el generador..." [(ngModel)]="estrategia.modulo[3]" name="modulo[3]" />
+                                    </div>
+                                    <div class="form-group w-50">
+                                        <label>X0: </label>
+                                        <input type="number" class="form-control" placeholder="X0 debe ser entero..." [(ngModel)]="estrategia.x0[3]" name="x0[3]" />
+                                    </div>
+                                    <div class="form-group w-50">
+                                        <label>Numeros deseados: </label>
+                                        <input type="number" class="form-control" placeholder="Numeros aleatorios deseados" [(ngModel)]="estrategia.nDeseados[3]" name="nDeseados[3]" />
+                                    </div>
+                                    <hr/>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success w-25">
+                                      <i class="fa fa-save"></i>
+                                        Guardar
+                                    </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">RI</th>
+                                        <th scope="col">Variable</th>
+                                        <th scope="col">Cartera</th>
+                                        <th scope="col">Apuesta</th>
+                                        <th scope="col">Resultado</th>
+                                        <th scope="col">Dinero final</th>
+                                        <th scope="col">Ganancia</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let a of xi; let i = index">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+                                        <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+                                        <td *ngIf="ri[i]"> {{ cartera[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ Apuesta[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ coloresResultado[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ DineroFinal[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ GananciaReplica4[i] }} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group text-center">
+                                        <button (click)="generar(3)" class="btn btn-info w-25">
+                                      <i class="fa fa-play"></i>
+                                        Generar prueba R4
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col">
+                                <h2>Corrida 5</h2>
+                                <form (ngSubmit)="guardar(f)" #f="ngForm">
+                                    <div class="form-group w-50">
+                                        <label>Modulo: </label>
+                                        <input type="number" class="form-control" placeholder="Modulo para el generador..." [(ngModel)]="estrategia.modulo[4]" name="modulo[4]" />
+                                    </div>
+                                    <div class="form-group w-50">
+                                        <label>X0: </label>
+                                        <input type="number" class="form-control" placeholder="X0 debe ser entero..." [(ngModel)]="estrategia.x0[4]" name="x0[4]" />
+                                    </div>
+                                    <div class="form-group w-50">
+                                        <label>Numeros deseados: </label>
+                                        <input type="number" class="form-control" placeholder="Numeros aleatorios deseados" [(ngModel)]="estrategia.nDeseados[4]" name="nDeseados[4]" />
+                                    </div>
+                                    <hr/>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success w-25">
+                                      <i class="fa fa-save"></i>
+                                        Guardar
+                                    </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">RI</th>
+                                        <th scope="col">Variable</th>
+                                        <th scope="col">Cartera</th>
+                                        <th scope="col">Apuesta</th>
+                                        <th scope="col">Resultado</th>
+                                        <th scope="col">Dinero final</th>
+                                        <th scope="col">Ganancia</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let a of xi; let i = index">
+                                        <th *ngIf="ri[i]" scope="row">{{ i + 1 }}</th>
+                                        <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+                                        <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+                                        <td *ngIf="ri[i]"> {{ cartera[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ Apuesta[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ coloresResultado[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ DineroFinal[i] }} </td>
+                                        <td *ngIf="ri[i]"> {{ GananciaReplica5[i] }} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group text-center">
+                                        <button (click)="generar(4)" class="btn btn-info w-25">
+                                      <i class="fa fa-play"></i>
+                                        Generar prueba R5
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="#carouselExampleFade" role="button" data-slide="prev">
+                <button type="button" class="btn btn-dark">Anterior</button>
+            </a>
+        </div>
+        <div class="col">
+            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                <button type="button" class="btn btn-dark">Siguiente</button>
+            </a>
+        </div>
+    </div>
+    <hr>
+    <button (click)="clean()" class="btn btn-outline-danger btn-block">
+        Limpiar campos
+      </button>
+    <hr>
+    <button (click)="MostrarResultados()" class="btn btn-primary btn-block">
+        Ver resultados de esta estrategia
+      </button>
+    <hr>
+
+    <div *ngIf="condicion1" class="row">
+        <div *ngIf="resultados" class="col">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ganancia replica 1</th>
+                        <th scope="col">Ganancia replica 2</th>
+                        <th scope="col">Ganancia replica 3</th>
+                        <th scope="col">Ganancia replica 4</th>
+                        <th scope="col">Ganancia replica 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of xi; let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica1[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica2[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica3[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica4[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica5[i] }} </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table *ngIf="resultados" class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Ganancia promedio</th>
+                        <th scope="col"> {{ getGananciaPromedioReplica1() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica2() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica3() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica4() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica5() | currency }} </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="condicion2" class="row">
+        <div *ngIf="resultados" class="col">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ganancia replica 1</th>
+                        <th scope="col">Ganancia replica 2</th>
+                        <th scope="col">Ganancia replica 3</th>
+                        <th scope="col">Ganancia replica 4</th>
+                        <th scope="col">Ganancia replica 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of xi; let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica1[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica2[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica3[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica4[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica5[i] }} </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table *ngIf="resultados" class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Ganancia promedio</th>
+                        <th scope="col"> {{ getGananciaPromedioReplica1() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica2() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica3() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica4() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica5() | currency }} </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="condicion3" class="row">
+        <div *ngIf="resultados" class="col">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ganancia replica 1</th>
+                        <th scope="col">Ganancia replica 2</th>
+                        <th scope="col">Ganancia replica 3</th>
+                        <th scope="col">Ganancia replica 4</th>
+                        <th scope="col">Ganancia replica 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of xi; let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica1[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica2[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica3[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica4[i] }} </td>
+                        <td *ngIf="ri[i]"> {{ GananciaReplica5[i] }} </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Ganancia promedio</th>
+                        <th scope="col"> {{ getGananciaPromedioReplica1() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica2() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica3() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica4() | currency }} </th>
+                        <th scope="col"> {{ getGananciaPromedioReplica5() | currency }} </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="resultados">
+        <div class="row">
+            <div class="col">
+                <h5>Media = {{ getMedia() | number }}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5>Desviación = {{ getDesviacion() | number }}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5>Limite inferior = {{ getMedia() | number }} | {{ getLim() | number }} | {{ getLim2() | number }} | {{ getLimInferior() | number }}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5>Limite superior = {{ getMedia() | number }} | {{ getLim() | number }} | {{ getLim2() | number }} | {{ getLimSuperior() | number }}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5>Intervalo de confianza = [ {{ getIntervaloConfianza1() | number }} - {{ getIntervaloConfianza2() | number }} ]</h5>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+
+            <div class="col">
+                <h3>prueba de kolmogorovSmirnov:</h3>
+
+                <h4>Datos usados:</h4>
+                <h5>n = {{ totalnumeros }} </h5>
+                <h5>α = 0.5 </h5>
+                <h5>D+ {{ MAX }} </h5>
+                <h5>D- {{ MAX2 }} </h5>
+                <h5>D= {{ MAX3 }} </h5>
+                <h5>Dα,n= 0.043006 </h5>
+                <h5>D Menor Dα,n</h5>
+                <h4> {{ respuestakolmo }} </h4>
+            </div>
+
+            <div class="col">
+                <h3>Prueba de corridas arriba y abajo de la media:</h3>
+
+                <h4>Datos usados:</h4>
+                <h5> Co = {{ getSecuencias() }} </h5>
+                <h5> n0 = {{ getN0() }} </h5>
+                <h5> n1 = {{ n1 }} </h5>
+                <h5> n = {{ totalnumeros }} </h5>
+                <hr>
+                <h5> MC0 = {{ getMC0() }} </h5>
+                <h5> OC0 = {{ getOC0() }} </h5>
+                <h5> Z0 = {{ getZ0() }} </h5>
+                <h4> {{ getResultado() }} </h4>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <h3>prueba de uniformidad x2:</h3>
+
+                <h4>Datos usados:</h4>
+                <h5> n = {{ totalnumeros }} </h5>
+                <h5> subintervalos = {{ getSubintervalos() | number:'1.0-0' }} </h5>
+                <h5> Ancho Int = {{ getAncho() }} </h5>
+                <h5> {{ getResultadox22() }} </h5>
+                <div class="container">
+                    <div class="row">
+                        <h5>Para comprobar la efectividad, presione el boton 'copiar' y abra la hoja de calculo: </h5>
+                    </div>
+                    <div class="row">
+
+                        <button (click)="copyLink( getResultadox2() )" type="button" class="btn btn-primary m-3">
+                        <i class="far fa-clipboard link-fabcb"></i> Copiar formula
+                    </button>
+                        <small *ngIf="copiado" class="text-success m-4">La formula, ya esta copiada! <i class="fas fa-check"></i></small>
+                        <small *ngIf="!copiado" class="text-primary m-4">No ha copiado la formula!</small>
+                        <a *ngIf="copiado" class="btn btn-danger m-3" href="https://docs.google.com/spreadsheets/d/11z2UEleiujM6Ldq9Ln6Vk9eJQKiF7ajwSVRDIeszPMU/edit#gid=0" target="_blank"><i class="fas fa-table"></i> Abrir hoja de calculo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="flex">
+                    <div class="flex-item">
+                        <div style="display: block;">
+                            <canvas baseChart width="300" height="150" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group text-center">
+                    <button (click)="guardarParaComparar()" class="btn btn-info w-25">
+              <i class="fa fa-save"></i>
+                Guardar datos para comparar
+            </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

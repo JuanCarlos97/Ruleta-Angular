@@ -1,0 +1,174 @@
+<h4>ALGORITMO<small> NO LINEAL </small></h4>
+<hr>
+<form autocomplete="off" (ngSubmit)="guardar( forma )" #forma="ngForm">
+
+    <div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Inserta tu modulo; Debe ser entero</label>
+            <div class="col-8">
+
+                <input class="form-control" type="number" placeholder="numero" name="m" [ngModel]="variables.m">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Ingresa x0; debe ser entero</label>
+            <div class="col-8">
+
+                <input class="form-control" type="number" placeholder="numero impar" name="x" [ngModel]="variables.x">
+            </div>
+        </div>
+
+        <div class=" form-group row ">
+            <label class="col-2 col-form-label ">Ingresa los numeros deseados</label>
+            <div class="col-8 ">
+                <input class="form-control " type="number " placeholder="Ej: 1000 " name="i" [ngModel]="variables.i">
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button type="submit" class="btn btn-outline-primary btn-block">
+        Realizar prueba
+      </button>
+            <button (click)="clean()" class="btn btn-outline-danger btn-block">
+        Limpiar campos
+      </button>
+
+        </div>
+    </div>
+</form>
+
+<div>
+    <h4>Datos a usar:</h4>
+    <h5>m = {{ m }} </h5>
+    <h5>x0 = {{ x }} </h5>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">n</th>
+            <th scope="col">xi</th>
+            <th scope="col">xi + 1</th>
+            <th scope="col">ri</th>
+            <th scope="col">Secuencia</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let a of xi; let i = index">
+            <th *ngIf="ri[i]" scope="row"> {{ i + 1 }} </th>
+            <td *ngIf="ri[i]"> {{ xi[i] }} </td>
+            <td *ngIf="ri[i]"> {{ xi1[i] }} </td>
+            <td *ngIf="ri[i]"> {{ ri[i] | number:'.0-5' }} </td>
+            <td *ngIf="ri[i]" class="defaultColorTd" [ngClass]="{ 'td-upDown': review( ri[i] ) }"> {{ ri[i] | number:'1.0-0' }} </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="row">
+
+    <!--
+    <div class="col">
+        <h3>prueba de kolmogorovSmirnov:</h3>
+
+        <h4>Datos usados:</h4>
+        <h5>n = {{ totalnumeros }} </h5>
+        <h5>α = 0.5 </h5>
+        <h5>D+ {{ MAX }} </h5>
+        <h5>D- {{ MAX2 }} </h5>
+        <h5>D= {{ MAX3 }} </h5>
+        <h5>Dα,n= 0.043006 </h5>
+        <h5>D Menor Dα,n</h5>
+        <h4> {{ respuestakolmo }} </h4>
+    </div>
+    -->
+
+    <div class="col">
+        <h3>Prueba de corridas arriba y abajo de la media:</h3>
+
+        <h4>Datos usados:</h4>
+        <h5> Co = {{ getSecuencias() }} </h5>
+        <h5> n0 = {{ getN0() }} </h5>
+        <h5> n1 = {{ n1 }} </h5>
+        <h5> n = {{ totalnumeros }} </h5>
+        <hr>
+        <h5> MC0 = {{ getMC0() }} </h5>
+        <h5> OC0 = {{ getOC0() }} </h5>
+        <h5> Z0 = {{ getZ0() }} </h5>
+        <h4> {{ getResultado() }} </h4>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col">
+        <h3>prueba de uniformidad x2:</h3>
+
+        <h4>Datos usados:</h4>
+        <h5> n = {{ totalnumeros }} </h5>
+        <h5> subintervalos = {{ getSubintervalos() | number:'1.0-0' }} </h5>
+        <h5> Ancho Int = {{ getAncho() }} </h5>
+        <h5> {{ getResultadox22() }} </h5>
+        <div class="container">
+            <div class="row">
+                <h5>Para comprobar la efectividad, presione el boton 'copiar' y abra la hoja de calculo: </h5>
+            </div>
+            <div class="row">
+
+                <button (click)="copyLink( getResultadox2() )" type="button" class="btn btn-primary m-3">
+                    <i class="far fa-clipboard link-fabcb"></i> Copiar formula
+                </button>
+                <small *ngIf="copiado" class="text-success m-4">La formula, ya esta copiada! <i class="fas fa-check"></i></small>
+                <small *ngIf="!copiado" class="text-primary m-4">No ha copiado la formula!</small>
+                <a *ngIf="copiado" class="btn btn-danger m-3" href="https://docs.google.com/spreadsheets/d/11z2UEleiujM6Ldq9Ln6Vk9eJQKiF7ajwSVRDIeszPMU/edit#gid=0" target="_blank"><i class="fas fa-table"></i> Abrir hoja de calculo</a>
+            </div>
+        </div>
+    </div>
+</div>
+<button (click)="clean()" class="btn btn-outline-danger btn-block">
+    Limpiar campos
+  </button>
+<hr>
+<div class="row">
+    <div class="col">
+        <table class="table" *ngIf="Intervalos() && FrecuenciaObservada() && FrecuenciaEsperada() && getFEFO()">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Intervalo</th>
+                    <th scope="col">LI</th>
+                    <th scope="col">LS</th>
+                    <th scope="col">Frecuencia observada</th>
+                    <th scope="col">Frecuencia esperada</th>
+                    <th scope="col">(FE - FO)2 FE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of LSx2; let i = index">
+                    <th> {{ i }} </th>
+                    <td> {{ LIx2[i] }} </td>
+                    <td> {{ LSx2[i] }} </td>
+                    <td> {{ frecuenciaObs[i] }} </td>
+                    <td> {{ frecuenciaEsp }} </td>
+                    <td> {{ FEFO[i] }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table" *ngIf="Intervalos() && FrecuenciaObservada() && FrecuenciaEsperada() && getFEFO()">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">-</th>
+                    <th scope="col">-</th>
+                    <th scope="col">-</th>
+                    <th scope="col"> {{ getSumaTotalFrecuencia() }} </th>
+                    <th scope="col"> {{ totalnumeros }} </th>
+                    <th scope="col"> {{ getTotalFEFO() }} </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
